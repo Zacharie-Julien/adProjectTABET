@@ -6,6 +6,7 @@ function getPage($db)
     $lesPages['contact'] = "contactControleur";
     $lesPages['mentions'] = "mentionsControleur";
     $lesPages['maintenance'] = "maintenanceControleur";
+    $lesPages['creation'] = "creationControleur";
     $lesPages['inscrire'] = "inscrireControleur";
     $lesPages['connexion'] = "connexionControleur";
     $lesPages['utilisateur'] = "utilisateurControleur";
