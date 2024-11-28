@@ -15,23 +15,23 @@ class Utilisateur
   public function __construct($db)
   {
     $this->db = $db;
-    $this->insert = $this->db->prepare("insert into utilisateur(email, mdp, nom, prenom, idRole) values (:email, :mdp, :nom, :prenom, :role)");
-    $this->select = $db->prepare("select u.id, email, idRole, nom, prenom, r.libelle as libellerole from utilisateur u, role r where u.idRole = r.id order by nom");
-    $this->connect = $this->db->prepare("select email, idRole, mdp from utilisateur where email=:email");
+    $this->insert = $this->db->prepare("insert into utilisateur(email, mdp, nom, prenom) values (:email, :mdp, :nom, :prenom)");
+    $this->select = $this->db->prepare("SELECT nom, prenom, email FROM utilisateur");
+    $this->connect = $this->db->prepare("select email, mdp from utilisateur where email=:email");
     $this->selectById = $db->prepare("select id, email, nom, prenom, idRole from utilisateur where id=:id");
     $this->update = $db->prepare("update utilisateur set nom=:nom, prenom=:prenom, email=:email, idRole=:role where id=:id");
     $this->updateMDP = $db->prepare("update utilisateur set mdp=:mdp where id=:id");
     $this->delete = $db->prepare("DELETE FROM utilisateur WHERE id=:id");
   }
-  public function insert($email, $mdp, $role, $nom, $prenom)
+  public function insert($email, $mdp, $nom, $prenom)
   {
     $r = true;
     $this->insert->execute(array(
       ':email' => $email,
       ':mdp' => $mdp,
-      ':role' => $role,
       ':nom' => $nom,
-      ':prenom' => $prenom
+      ':prenom' => $prenom,
+      // ':role' => $role,
     ));
     if ($this->insert->errorCode() != 0) {
       print_r($this->insert->errorInfo());
@@ -39,14 +39,17 @@ class Utilisateur
     }
     return $r;
   }
+
   public function select()
   {
     $this->select->execute();
-    if ($this->select->errorCode() != 0) {
+
+    if ($this->select->errorCode() != '00000') {
       print_r($this->select->errorInfo());
     }
-    return $this->select->fetchAll();
+    return $this->select->fetchAll(PDO::FETCH_ASSOC);
   }
+
   public function connect($email)
   {
     $unUtilisateur = $this->connect->execute(array(':email' => $email));
