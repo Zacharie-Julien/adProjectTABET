@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{ parent() }}
+	- Gestion
+{% endblock %}
+
+{% block contenu %}
+	<div class="d-flex flex-column justify-content-center" style="min-height: 90vh;">
+		<div class="container text-center">
+			<h1>Gestion des Utilisateurs</h1>
+			<table class="table table-striped mx-auto" style="width: 80%;">
+				<thead>
+					<tr>
+						<th scope="col">Nom</th>
+						<th scope="col">Prénom</th>
+						<th scope="col">Email</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for utilisateur in utilisateurs %}
+						<tr>
+							<td>{{ utilisateur.nom }}</td>
+							<td>{{ utilisateur.prenom }}</td>
+							<td>{{ utilisateur.email }}</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3" class="text-center">Aucun utilisateur trouvé.</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
