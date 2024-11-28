@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{ parent() }}
+	Connexion
+{% endblock %}
+
+{% block contenu %}
+	{% include('navbar.html.twig') %}
+	<div class="container">
+		{% if form.valide is defined %}
+			{% if form.valide == true %}
+				<h1>Connexion réussie</h1>
+				<h1>Bienvenue !</h1>
+			{% else %}
+				<h1>Echec de la connexion</h1>
+				<h1>Erreur :
+					{{ form.message }}</h1>
+				<h1>
+					<a href="index.php?page=connexion">Réessayer</a>
+				</h1>
+			{% endif %}
+		{% else %}
+			<form action="index.php?page=connexion" class="form" method="post">
+				<p class="title">Connexion
+				</p>
+				<p class="message">Connectez-vous</p>
+				<label>
+					<input class="input" id="inputEmail" name="inputEmail" type="email" placeholder="" required>
+					<span>Email</span>
+				</label>
+				<label>
+					<input class="input" id="inputPassword" name="inputPassword" type="password" placeholder="" required>
+					<span>Mot de passe</span>
+				</label>
+				<button class="submit" type="submit" name="btConnecter">Acceder au site</button>
+				<p class="signin">Vous n'êtes pas inscris ?
+					<a href="index.php?page=inscrires">Inscrivez-vous</a>
+				</p>
+			</form>
+		</div>
+	{% endif %}
+{% endblock %}

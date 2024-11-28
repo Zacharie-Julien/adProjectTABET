@@ -1,0 +1,20 @@
+body {
+    background-image: url(./);
+    min-height: 100vh;
+}
+
+.card-connect{
+    width: 500px;
+}
+
+.color {
+    color : #00778f;
+}
+
+.btn-primary{
+    background-color: #00778f;
+}
+
+.btn-primary:hover{
+    background-color: #00778f;
+}
