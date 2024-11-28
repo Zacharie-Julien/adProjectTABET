@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ parent() }} - Création de compte
+{% endblock %}
+
+{% block contenu %}
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background-image: url('./fond.jpg'); background-size: cover; backdrop-filter: blur(1px);">
+        <div class="bg-white rounded-4 shadow p-5 card-create">
+            <h2 class="color text-center mb-4">Création du compte</h2>
+            <form action="index.php?page=creation" method="post">
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label for="nom" class="form-label color small">NOM</label>
+                        <input type="text" class="form-control bg-white" id="nom" name="nom" placeholder="Entrez votre nom..." required>
+                    </div>
+                    <div class="col">
+                        <label for="prenom" class="form-label color small">PRENOM</label>
+                        <input type="text" class="form-control bg-white" id="prenom" name="prenom" placeholder="Entrez votre prénom..." required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label color small">EMAIL</label>
+                    <input type="email" class="form-control bg-white" id="email" name="email" placeholder="Entrez votre email..." required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label color small">MOT DE PASSE</label>
+                    <input type="password" class="form-control bg-white" id="password" name="password" placeholder="Entrez votre mot de passe..." required>
+                </div>
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label color small">CONFIRMEZ LE MOT DE PASSE</label>
+                    <input type="password" class="form-control bg-white" id="confirmPassword" name="confirmPassword" placeholder="Confirmez votre mot de passe..." required>
+                </div>
+                <div class="mb-3">
+                    <label for="role" class="form-label color small">ROLE</label>
+                    <select id="role" name="role" class="form-control bg-white" required>
+                        <option value="" disabled selected>Sélectionner un rôle...</option>
+                        <option value="eleve">ELEVE</option>
+                        <option value="prof">PROF</option>
+                        <option value="admin">ADMIN</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="classe" class="form-label color small">CLASSE (si élève)</label>
+                    <select id="classe" name="classe" class="form-control bg-white">
+                        <option value="" disabled selected>Sélectionner une classe...</option>
+                        <option value="2nd">2nd</option>
+                        <option value="1ere">1ère</option>
+                        <option value="terminal">Terminal</option>
+                        <option value="bts">BTS</option>
+                        <option value="autre">...</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Créer le compte</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
